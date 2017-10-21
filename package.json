@@ -1,0 +1,28 @@
+{
+  "name": "frkeyboardpackage",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShahinShabnam/frKeyboardPackage.git"
+  },
+  "author": {
+    "name": "ShahinShabnam",
+    "email": "shabnam.shahin@rancelab.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShahinShabnam/frKeyboardPackage.git/issues"
+  },
+  "main": "frkeyboardpackage.umd.js",
+  "module": "frkeyboardpackage.js",
+  "jsnext:main": "frkeyboardpackage.js",
+  "typings": "frkeyboardpackage.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
