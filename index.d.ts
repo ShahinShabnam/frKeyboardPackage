@@ -1,9 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
-export * from './sample.component';
-export * from './sample.directive';
-export * from './sample.pipe';
+export * from './custom-keyboard.component';
 export * from './fr-keyboard.service';
 export * from './fr-keyboard/fr-keyboard.component';
-export declare class SampleModule {
+export declare class CustomKeyboardModule {
     static forRoot(): ModuleWithProviders;
 }

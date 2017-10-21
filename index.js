@@ -1,73 +1,24 @@
-import { Component, Directive, ElementRef, Injectable, NgModule, Pipe } from '@angular/core';
+import { Component, Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import 'rxjs/add/operator/filter';
 import { Subject as Subject$1 } from 'rxjs/Subject';
 import { FormsModule } from '@angular/forms';
 
-var SampleComponent = (function () {
-    function SampleComponent() {
+var CustomKeyboardComponent = (function () {
+    function CustomKeyboardComponent() {
     }
-    return SampleComponent;
+    return CustomKeyboardComponent;
 }());
-SampleComponent.decorators = [
+CustomKeyboardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sample-component',
-                template: "<fr-custom-keyboard></fr-custom-keyboard> ",
+                template: '<fr-custom-keyboard></fr-custom-keyboard>'
             },] },
 ];
 /**
  * @nocollapse
  */
-SampleComponent.ctorParameters = function () { return []; };
-
-var SampleDirective = (function () {
-    /**
-     * @param {?} el
-     */
-    function SampleDirective(el) {
-        this.el = el;
-    }
-    return SampleDirective;
-}());
-SampleDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[sampleDirective]'
-            },] },
-];
-/**
- * @nocollapse
- */
-SampleDirective.ctorParameters = function () { return [
-    { type: ElementRef, },
-]; };
-
-/**
- * Transforms any input value
- */
-var SamplePipe = (function () {
-    function SamplePipe() {
-    }
-    /**
-     * @param {?} value
-     * @param {?=} args
-     * @return {?}
-     */
-    SamplePipe.prototype.transform = function (value, args) {
-        if (args === void 0) { args = null; }
-        return value;
-    };
-    return SamplePipe;
-}());
-SamplePipe.decorators = [
-    { type: Pipe, args: [{
-                name: 'samplePipe'
-            },] },
-    { type: Injectable },
-];
-/**
- * @nocollapse
- */
-SamplePipe.ctorParameters = function () { return []; };
+CustomKeyboardComponent.ctorParameters = function () { return []; };
 
 var FrKeyboardService = (function () {
     function FrKeyboardService() {
@@ -469,43 +420,39 @@ FrKeyboardComponent.ctorParameters = function () { return [
     { type: FrKeyboardService, },
 ]; };
 
-var SampleModule = (function () {
-    function SampleModule() {
+var CustomKeyboardModule = (function () {
+    function CustomKeyboardModule() {
     }
     /**
      * @return {?}
      */
-    SampleModule.forRoot = function () {
+    CustomKeyboardModule.forRoot = function () {
         return {
-            ngModule: SampleModule,
+            ngModule: CustomKeyboardModule,
             providers: [FrKeyboardService]
         };
     };
-    return SampleModule;
+    return CustomKeyboardModule;
 }());
-SampleModule.decorators = [
+CustomKeyboardModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
                     FormsModule
                 ],
                 declarations: [
-                    SampleComponent,
-                    SampleDirective,
-                    SamplePipe,
+                    CustomKeyboardComponent,
                     FrKeyboardComponent,
                 ],
                 exports: [
                     FrKeyboardComponent,
-                    SampleComponent,
-                    SampleDirective,
-                    SamplePipe
+                    CustomKeyboardComponent,
                 ]
             },] },
 ];
 /**
  * @nocollapse
  */
-SampleModule.ctorParameters = function () { return []; };
+CustomKeyboardModule.ctorParameters = function () { return []; };
 
-export { SampleModule, SampleComponent, SampleDirective, SamplePipe, FrKeyboardService, FrKeyboardComponent };
+export { CustomKeyboardModule, CustomKeyboardComponent, FrKeyboardService, FrKeyboardComponent };
