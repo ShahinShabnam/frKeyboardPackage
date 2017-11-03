@@ -67,6 +67,7 @@ var FrKeyboardComponent = (function () {
      * @param {?} frKeyboardService
      */
     function FrKeyboardComponent(frKeyboardService) {
+        var _this = this;
         this.frKeyboardService = frKeyboardService;
         this.enterKey = ["Enter"];
         this.spacebarKey = ["Spacebar"];
@@ -251,15 +252,6 @@ var FrKeyboardComponent = (function () {
                     widthRatio: 10,
                 },
             ];
-    }
-    /**
-     * @return {?}
-     */
-    FrKeyboardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.inputstr = "";
-        this.CapsLock = false;
-        this.caretPos = 0;
         this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
             if (d.error) {
                 console.log(d.error);
@@ -271,6 +263,14 @@ var FrKeyboardComponent = (function () {
                 console.log(_this.inputType + "this.inputType");
             }
         });
+    }
+    /**
+     * @return {?}
+     */
+    FrKeyboardComponent.prototype.ngOnInit = function () {
+        this.inputstr = "";
+        this.CapsLock = false;
+        this.caretPos = 0;
     };
     /**
      * @param {?} event
