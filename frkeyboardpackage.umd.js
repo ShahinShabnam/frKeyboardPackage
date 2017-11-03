@@ -39,6 +39,7 @@ var FrKeyboardService = (function () {
      * @return {?}
      */
     FrKeyboardService.prototype.filterOn = function (id) {
+        alert(id + "d.id");
         return (this.subject.filter(function (d) { return (d.id === id); }));
     };
     
@@ -48,6 +49,7 @@ var FrKeyboardService = (function () {
      * @return {?}
      */
     FrKeyboardService.prototype.emit = function (id, options) {
+        alert(options + "options");
         this.subject.next({ id: id, data: options });
     };
     return FrKeyboardService;
@@ -259,9 +261,15 @@ var FrKeyboardComponent = (function () {
         this.CapsLock = false;
         this.caretPos = 0;
         this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
-            alert(_this.inputType + "this.inputType");
-            console.log(_this.inputType + "this.inputType");
-            _this.inputType = d.data;
+            if (d.error) {
+                console.log(d.error);
+            }
+            else {
+                _this.inputType = d.data;
+                alert(_this.inputType + "this.inputType");
+                alert(d.data + " d.data");
+                console.log(_this.inputType + "this.inputType");
+            }
         });
     };
     /**
