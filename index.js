@@ -30,7 +30,8 @@ var FrKeyboardService = (function () {
      * @return {?}
      */
     FrKeyboardService.prototype.getParams = function (passvalue) {
-        console.log(passvalue);
+        alert(passvalue + "12345");
+        console.log(passvalue + "passvalue");
         this.emit('input:type:change', passvalue);
     };
     /**
@@ -256,7 +257,6 @@ var FrKeyboardComponent = (function () {
         var _this = this;
         this.inputstr = "";
         this.CapsLock = false;
-        // this.keys = ["Esc", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "bksp", "Caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "Enter", "<--", "z", "x", "c", "v", "b", "n", "m", "-", "-->", "Spacebar", "0",];
         this.caretPos = 0;
         this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
             alert(_this.inputType + "this.inputType");
