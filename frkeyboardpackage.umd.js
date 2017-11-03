@@ -40,6 +40,7 @@ var FrKeyboardService = (function () {
      */
     FrKeyboardService.prototype.filterOn = function (id) {
         alert(id + "d.id");
+        alert(this.subject + "this.subject");
         return (this.subject.filter(function (d) { return (d.id === id); }));
     };
     
@@ -50,6 +51,7 @@ var FrKeyboardService = (function () {
      */
     FrKeyboardService.prototype.emit = function (id, options) {
         alert(options + "options");
+        alert(id + "emit id");
         this.subject.next({ id: id, data: options });
     };
     return FrKeyboardService;
