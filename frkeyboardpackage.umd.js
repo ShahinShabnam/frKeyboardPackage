@@ -290,8 +290,8 @@ var FrKeyboardComponent = (function () {
      * @return {?}
      */
     FrKeyboardComponent.prototype.enterKeyMethod = function () {
-        alert(this.inputstr);
         this.frKeyboardService.emit('fr:keyboard:enter:press', this.inputstr);
+        document.getElementById('input').focus();
     };
     /**
      * @return {?}
@@ -323,7 +323,6 @@ var FrKeyboardComponent = (function () {
      */
     FrKeyboardComponent.prototype.click = function (item, inputTextArea) {
         //alert(item);
-        console.log('item' + "" + item);
         this.getCaretPos(inputTextArea); //Get Cursor Position From Text Area
         if (item === "Esc") {
             console.log(item);
@@ -371,8 +370,7 @@ var FrKeyboardComponent = (function () {
                 this.inputstr = this.inputstr.substring(0, this.inputstr.length - 1);
             }
         }
-        if (item[0] != "Enter" && item != "Enter")
-            document.getElementById('input').focus(); //input focus...
+        document.getElementById('input').focus(); //input focus...
     };
     /**
      * @param {?} oField
