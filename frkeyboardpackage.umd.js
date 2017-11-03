@@ -64,7 +64,6 @@ var FrKeyboardComponent = (function () {
      * @param {?} frKeyboardService
      */
     function FrKeyboardComponent(frKeyboardService) {
-        var _this = this;
         this.frKeyboardService = frKeyboardService;
         this.enterKey = ["Enter"];
         this.spacebarKey = ["Spacebar"];
@@ -249,20 +248,21 @@ var FrKeyboardComponent = (function () {
                     widthRatio: 10,
                 },
             ];
-        this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
-            // alert(this.inputType + "this.inputType");
-            console.log(_this.inputType + "this.inputType");
-            _this.inputType = d.data;
-        });
     }
     /**
      * @return {?}
      */
     FrKeyboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.inputstr = "";
         this.CapsLock = false;
         // this.keys = ["Esc", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "bksp", "Caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "Enter", "<--", "z", "x", "c", "v", "b", "n", "m", "-", "-->", "Spacebar", "0",];
         this.caretPos = 0;
+        this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
+            // alert(this.inputType + "this.inputType");
+            console.log(_this.inputType + "this.inputType");
+            _this.inputType = d.data;
+        });
     };
     /**
      * @param {?} event
@@ -291,7 +291,6 @@ var FrKeyboardComponent = (function () {
      */
     FrKeyboardComponent.prototype.enterKeyMethod = function () {
         this.frKeyboardService.emit('fr:keyboard:enter:press', this.inputstr);
-        document.getElementById('input').focus();
     };
     /**
      * @return {?}
