@@ -407,10 +407,14 @@ var FrKeyboardComponent = (function () {
             range.select();
         }
     };
+    /**
+     * @return {?}
+     */
+    FrKeyboardComponent.prototype.ngOnDestroy = function () {
+        this.subscriptions.unsubscribe();
+    };
     return FrKeyboardComponent;
 }());
-// inputDefine(inputType){
-// }
 FrKeyboardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'fr-custom-keyboard',

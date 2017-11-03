@@ -32,4 +32,5 @@ export declare class FrKeyboardComponent implements OnInit {
     click(item: any, inputTextArea: any): void;
     getCaretPos(oField: any): void;
     setSelectionRange(selectionStart: any, selectionEnd: any): void;
+    ngOnDestroy(): void;
 }
