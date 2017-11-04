@@ -3,7 +3,7 @@ import 'rxjs/add/operator/filter';
 import { Subject } from 'rxjs/Subject';
 export declare class FrKeyboardService {
     subject: Subject<any>;
-    inputTypeT: any;
+    inputType: string;
     constructor();
     getParams(passvalue: string): void;
     filterOn(id: string): Observable<any>;

@@ -3,7 +3,6 @@ import { FrKeyboardService } from '../fr-keyboard.service';
 import { Subscription } from 'rxjs/Subscription';
 export declare class FrKeyboardComponent implements OnInit {
     frKeyboardService: FrKeyboardService;
-    inputTypeT: any;
     subscriptions: Subscription;
     numberKeys: Array<{
         key: string;
@@ -24,7 +23,6 @@ export declare class FrKeyboardComponent implements OnInit {
     inputstr: string;
     caretPos: number;
     inputTextArea: any;
-    inputType: any;
     constructor(frKeyboardService: FrKeyboardService);
     ngOnInit(): void;
     keyDown(event: any): void;
@@ -33,5 +31,4 @@ export declare class FrKeyboardComponent implements OnInit {
     click(item: any, inputTextArea: any): void;
     getCaretPos(oField: any): void;
     setSelectionRange(selectionStart: any, selectionEnd: any): void;
-    ngOnDestroy(): void;
 }

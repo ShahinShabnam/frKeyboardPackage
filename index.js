@@ -22,6 +22,7 @@ CustomKeyboardComponent.ctorParameters = function () { return []; };
 
 var FrKeyboardService = (function () {
     function FrKeyboardService() {
+        this.inputType = '';
         // alert("service cont");  
         this.subject = new Subject$1();
     }
@@ -30,17 +31,13 @@ var FrKeyboardService = (function () {
      * @return {?}
      */
     FrKeyboardService.prototype.getParams = function (passvalue) {
-        alert(passvalue + "12345");
-        console.log(passvalue + "passvalue");
-        this.emit('input:type:change', passvalue);
+        this.inputType = passvalue;
     };
     /**
      * @param {?} id
      * @return {?}
      */
     FrKeyboardService.prototype.filterOn = function (id) {
-        alert(id + "d.id");
-        alert(this.subject + "this.subject");
         return (this.subject.filter(function (d) { return (d.id === id); }));
     };
     
@@ -50,16 +47,10 @@ var FrKeyboardService = (function () {
      * @return {?}
      */
     FrKeyboardService.prototype.emit = function (id, options) {
-        alert(options + "options");
-        alert(id + "emit id");
         this.subject.next({ id: id, data: options });
     };
     return FrKeyboardService;
 }());
-// getInputValues(): Observable<any> {
-//   return this._http.get(this.inputTypeT)
-//   .map(response => response.json());
-// }
 FrKeyboardService.decorators = [
     { type: Injectable },
 ];
@@ -73,7 +64,6 @@ var FrKeyboardComponent = (function () {
      * @param {?} frKeyboardService
      */
     function FrKeyboardComponent(frKeyboardService) {
-        var _this = this;
         this.frKeyboardService = frKeyboardService;
         this.enterKey = ["Enter"];
         this.spacebarKey = ["Spacebar"];
@@ -258,16 +248,6 @@ var FrKeyboardComponent = (function () {
                     widthRatio: 10,
                 },
             ];
-        this.subscriptions = this.frKeyboardService.filterOn('input:type:change').subscribe(function (d) {
-            if (d.error) {
-                console.log(d.error);
-            }
-            else {
-                alert(d.data);
-                _this.inputType = d.data;
-                console.log(_this.inputType + "this.inputType");
-            }
-        });
     }
     /**
      * @return {?}
@@ -276,7 +256,6 @@ var FrKeyboardComponent = (function () {
         this.inputstr = "";
         this.CapsLock = false;
         this.caretPos = 0;
-        this.subscriptions.unsubscribe();
     };
     /**
      * @param {?} event
@@ -413,18 +392,12 @@ var FrKeyboardComponent = (function () {
             range.select();
         }
     };
-    /**
-     * @return {?}
-     */
-    FrKeyboardComponent.prototype.ngOnDestroy = function () {
-        this.subscriptions.unsubscribe();
-    };
     return FrKeyboardComponent;
 }());
 FrKeyboardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'fr-custom-keyboard',
-                template: "<div class=\"keyboard\"> <div style=\"height: 30px; background-color: #95B3D7;font-size: 20px;margin-bottom: 8px;padding-top: 7px\">Swipe Your Card</div> <input id=\"input\" *ngIf=\"inputType == 'text'\" autofocus #inputTextArea type=\"text\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\" *ngIf=\"inputType == 'password'\" style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <input id=\"input\" autofocus #inputTextArea type=\"password\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\" style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <br> <br> <div style=\"width:80%;float:left;height: 300px;\"> <div> <button style=\"font-size: 20px;height: 57px;float:left;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let keyfst  of escGroup\" [style.width.%]=\"keyfst.widthRatio\" (click)=\"click(keyfst.key,inputTextArea)\"> {{keyfst.key}} </button> </div> <div style=\"width:87%;float:left\"> <button style=\"float:left;height:57px;font-size: 20px;;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let caps of capsGroup\" [style.width.%]=\"caps.widthRatio\" (click)=\"click(caps.key,inputTextArea)\"> {{caps.key}} </button> </div> <div> <button style=\"font-size: 20px;width:12%;height:118px;word-wrap: break-word;\" (click)=\"click(enterKey,inputTextArea)\"> {{enterKey}} </button> </div> <div> <button style=\"font-size: 20px;height: 57px;width:100%\" (click)=\"click(spacebarKey,inputTextArea)\"> {{spacebarKey}} </button> </div> </div> <div style=\"width:20%;float:right;\"> <button style=\"height:57px;font-size: 20px;word-wrap: break-word;padding-left: 10px; margin-right:1.5%;margin-bottom: 1.25%;\" *ngFor=\"let numberKey of numberKeys\" [style.width.%]=\"numberKey.widthRatio\" (click)=\"click(numberKey.key,inputTextArea)\"> {{numberKey.key}} </button> </div> </div> <div></div>",
+                template: "<div class=\"keyboard\"> <div style=\"height: 30px; background-color: #95B3D7;font-size: 20px;margin-bottom: 8px;padding-top: 7px\">Swipe Your Card</div> <input id=\"input\" autofocus #inputTextArea [type]=\"frKeyboardService.inputType\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\"  style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <br> <br> <div style=\"width:80%;float:left;height: 300px;\"> <div> <button style=\"font-size: 20px;height: 57px;float:left;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let keyfst  of escGroup\" [style.width.%]=\"keyfst.widthRatio\" (click)=\"click(keyfst.key,inputTextArea)\"> {{keyfst.key}} </button> </div> <div style=\"width:87%;float:left\"> <button style=\"float:left;height:57px;font-size: 20px;;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let caps of capsGroup\" [style.width.%]=\"caps.widthRatio\" (click)=\"click(caps.key,inputTextArea)\"> {{caps.key}} </button> </div> <div> <button style=\"font-size: 20px;width:12%;height:118px;word-wrap: break-word;\" (click)=\"click(enterKey,inputTextArea)\"> {{enterKey}} </button> </div> <div> <button style=\"font-size: 20px;height: 57px;width:100%\" (click)=\"click(spacebarKey,inputTextArea)\"> {{spacebarKey}} </button> </div> </div> <div style=\"width:20%;float:right;\"> <button style=\"height:57px;font-size: 20px;word-wrap: break-word;padding-left: 10px; margin-right:1.5%;margin-bottom: 1.25%;\" *ngFor=\"let numberKey of numberKeys\" [style.width.%]=\"numberKey.widthRatio\" (click)=\"click(numberKey.key,inputTextArea)\"> {{numberKey.key}} </button> </div> </div> ",
                 styles: [".keyboard{ height: 330px; background-color: #DBE5F1; text-align: center; }"],
                 host: { '(window:keydown)': 'keyDown($event)' }
             },] },
