@@ -3,6 +3,7 @@ import { FrKeyboardService } from '../fr-keyboard.service';
 import { Subscription } from 'rxjs/Subscription';
 export declare class FrKeyboardComponent implements OnInit {
     frKeyboardService: FrKeyboardService;
+    inputTypeT: any;
     subscriptions: Subscription;
     numberKeys: Array<{
         key: string;

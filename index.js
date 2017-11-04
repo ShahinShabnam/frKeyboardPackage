@@ -2,7 +2,11 @@ import { Component, Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import 'rxjs/add/operator/filter';
 import { Subject as Subject$1 } from 'rxjs/Subject';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 var CustomKeyboardComponent = (function () {
     function CustomKeyboardComponent() {
@@ -56,6 +60,10 @@ var FrKeyboardService = (function () {
     };
     return FrKeyboardService;
 }());
+// getInputValues(): Observable<any> {
+//   return this._http.get(this.inputTypeT)
+//   .map(response => response.json());
+// }
 FrKeyboardService.decorators = [
     { type: Injectable },
 ];
@@ -259,14 +267,9 @@ var FrKeyboardComponent = (function () {
                 console.log(d.error);
             }
             else {
+                alert(d.data);
                 _this.inputType = d.data;
-                // if(this.inputType=='password'|| this.inputType=='text'){
-                //  this.inputType
-                // }
-                alert(_this.inputType + "this.inputType");
-                alert(d.data + " d.data");
                 console.log(_this.inputType + "this.inputType");
-                _this.frKeyboardService.emit('is:keyboard:ready', true);
             }
         });
     }
@@ -425,7 +428,7 @@ var FrKeyboardComponent = (function () {
 FrKeyboardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'fr-custom-keyboard',
-                template: " <div class=\"keyboard\"> <div style=\"height: 30px; background-color: #95B3D7;font-size: 20px;margin-bottom: 8px;padding-top: 7px\">Swipe Your Card</div> <input id=\"input\" autofocus #inputTextArea [type]=\"inputType\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\" style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <br> {{inputstr}} <br> <div style=\"width:80%;float:left;height: 300px;\"> <div> <button style=\"font-size: 20px;height: 57px;float:left;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let keyfst  of escGroup\" [style.width.%]=\"keyfst.widthRatio\" (click)=\"click(keyfst.key,inputTextArea)\"> {{keyfst.key}} </button> </div> <div style=\"width:87%;float:left\"> <button style=\"float:left;height:57px;font-size: 20px;;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let caps of capsGroup\" [style.width.%]=\"caps.widthRatio\" (click)=\"click(caps.key,inputTextArea)\"> {{caps.key}} </button> </div> <div> <button style=\"font-size: 20px;width:12%;height:118px;word-wrap: break-word;\" (click)=\"click(enterKey,inputTextArea)\"> {{enterKey}} </button> </div> <div> <button style=\"font-size: 20px;height: 57px;width:100%\" (click)=\"click(spacebarKey,inputTextArea)\"> {{spacebarKey}} </button> </div> </div> <div style=\"width:20%;float:right;\"> <button style=\"height:57px;font-size: 20px;word-wrap: break-word;padding-left: 10px; margin-right:1.5%;margin-bottom: 1.25%;\" *ngFor=\"let numberKey of numberKeys\" [style.width.%]=\"numberKey.widthRatio\" (click)=\"click(numberKey.key,inputTextArea)\"> {{numberKey.key}} </button> </div> </div> ",
+                template: "<div class=\"keyboard\"> <div style=\"height: 30px; background-color: #95B3D7;font-size: 20px;margin-bottom: 8px;padding-top: 7px\">Swipe Your Card</div> <input id=\"input\" *ngIf=\"inputType == 'text'\" autofocus #inputTextArea type=\"text\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\" *ngIf=\"inputType == 'password'\" style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <input id=\"input\" autofocus #inputTextArea type=\"password\" (click)=\"getCaretPos(inputTextArea)\" (keyup)=\"getCaretPos(inputTextArea)\" [(ngModel)]=\"inputstr\" style=\"width:90%;margin-left: 17px;background-color: #95B3D7;\" /> <br> <br> <div style=\"width:80%;float:left;height: 300px;\"> <div> <button style=\"font-size: 20px;height: 57px;float:left;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let keyfst  of escGroup\" [style.width.%]=\"keyfst.widthRatio\" (click)=\"click(keyfst.key,inputTextArea)\"> {{keyfst.key}} </button> </div> <div style=\"width:87%;float:left\"> <button style=\"float:left;height:57px;font-size: 20px;;margin-right:.5%;margin-bottom:.5%;word-wrap: break-word;\" *ngFor=\"let caps of capsGroup\" [style.width.%]=\"caps.widthRatio\" (click)=\"click(caps.key,inputTextArea)\"> {{caps.key}} </button> </div> <div> <button style=\"font-size: 20px;width:12%;height:118px;word-wrap: break-word;\" (click)=\"click(enterKey,inputTextArea)\"> {{enterKey}} </button> </div> <div> <button style=\"font-size: 20px;height: 57px;width:100%\" (click)=\"click(spacebarKey,inputTextArea)\"> {{spacebarKey}} </button> </div> </div> <div style=\"width:20%;float:right;\"> <button style=\"height:57px;font-size: 20px;word-wrap: break-word;padding-left: 10px; margin-right:1.5%;margin-bottom: 1.25%;\" *ngFor=\"let numberKey of numberKeys\" [style.width.%]=\"numberKey.widthRatio\" (click)=\"click(numberKey.key,inputTextArea)\"> {{numberKey.key}} </button> </div> </div> <div></div>",
                 styles: [".keyboard{ height: 330px; background-color: #DBE5F1; text-align: center; }"],
                 host: { '(window:keydown)': 'keyDown($event)' }
             },] },
@@ -455,7 +458,8 @@ CustomKeyboardModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
-                    FormsModule
+                    FormsModule,
+                    HttpModule
                 ],
                 declarations: [
                     CustomKeyboardComponent,
