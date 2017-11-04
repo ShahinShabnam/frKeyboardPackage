@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import 'rxjs/add/operator/filter';
 import { Subject as Subject$1 } from 'rxjs/Subject';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 var CustomKeyboardComponent = (function () {
     function CustomKeyboardComponent() {
@@ -455,8 +454,7 @@ CustomKeyboardModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
-                    FormsModule,
-                    HttpModule
+                    FormsModule
                 ],
                 declarations: [
                     CustomKeyboardComponent,

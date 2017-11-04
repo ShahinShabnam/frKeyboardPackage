@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs/add/operator/filter'), require('rxjs/Subject'), require('@angular/forms'), require('@angular/http')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'rxjs/add/operator/filter', 'rxjs/Subject', '@angular/forms', '@angular/http'], factory) :
-	(factory((global.frkeyboardpackage = {}),global.core,global.common,null,global.Subject,global.forms,global.http));
-}(this, (function (exports,core,common,filter,Subject,forms,http) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs/add/operator/filter'), require('rxjs/Subject'), require('@angular/forms')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'rxjs/add/operator/filter', 'rxjs/Subject', '@angular/forms'], factory) :
+	(factory((global.frkeyboardpackage = {}),global.core,global.common,null,global.Subject,global.forms));
+}(this, (function (exports,core,common,filter,Subject,forms) { 'use strict';
 
 var CustomKeyboardComponent = (function () {
     function CustomKeyboardComponent() {
@@ -454,8 +454,7 @@ CustomKeyboardModule.decorators = [
     { type: core.NgModule, args: [{
                 imports: [
                     common.CommonModule,
-                    forms.FormsModule,
-                    http.HttpModule
+                    forms.FormsModule
                 ],
                 declarations: [
                     CustomKeyboardComponent,
