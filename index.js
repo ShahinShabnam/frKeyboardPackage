@@ -23,7 +23,6 @@ CustomKeyboardComponent.ctorParameters = function () { return []; };
 var FrKeyboardService = (function () {
     function FrKeyboardService() {
         this.inputType = '';
-        // alert("service cont");  
         this.subject = new Subject$1();
     }
     /**
