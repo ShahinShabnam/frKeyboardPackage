@@ -2,9 +2,6 @@ import { Component, Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import 'rxjs/add/operator/filter';
 import { Subject as Subject$1 } from 'rxjs/Subject';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 

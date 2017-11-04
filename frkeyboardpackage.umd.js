@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs/add/operator/filter'), require('rxjs/Subject'), require('rxjs/add/operator/toPromise'), require('rxjs/add/operator/catch'), require('rxjs/add/operator/map'), require('@angular/forms'), require('@angular/http')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'rxjs/add/operator/filter', 'rxjs/Subject', 'rxjs/add/operator/toPromise', 'rxjs/add/operator/catch', 'rxjs/add/operator/map', '@angular/forms', '@angular/http'], factory) :
-	(factory((global.frkeyboardpackage = {}),global.core,global.common,null,global.Subject,null,null,null,global.forms,global.http));
-}(this, (function (exports,core,common,filter,Subject,toPromise,_catch,map,forms,http) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs/add/operator/filter'), require('rxjs/Subject'), require('@angular/forms'), require('@angular/http')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'rxjs/add/operator/filter', 'rxjs/Subject', '@angular/forms', '@angular/http'], factory) :
+	(factory((global.frkeyboardpackage = {}),global.core,global.common,null,global.Subject,global.forms,global.http));
+}(this, (function (exports,core,common,filter,Subject,forms,http) { 'use strict';
 
 var CustomKeyboardComponent = (function () {
     function CustomKeyboardComponent() {
